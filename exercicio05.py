@@ -19,8 +19,8 @@ pprint(type(plateleira1.livro2))
 #pequeno raciocionio sobre argumentos de funcoes no python, uma função com argumentos que precisam ser passados como parametros
 #podem ser passados os parametros pela posição do argumento dentro do parentesis da funão ou pelo seu keyword.
 
-#aqui eu uso como atributo de classe o **kwargs onde ele permite que nos possamos passar valores novos para 
-#uma instancia a partir de uma instancia.key de forma que a instancia.key recebe um valor. isso dentro do 
-# escopo da classe, funcionaria da mesma forma em uma função comum. caso quisessemos passar os argumentos na forma
-# de posicao usariamos *args (nesse caso não faz sentido mas vale ressaltar, pois a loógica funciona para o 
-# escopo de funções também.) 
+#a resolução do exercicio propoe o uso do **kwargs para a criação de atributos dinâmicos dentro da classe. mas não faz sentido
+#usar o **kwargs para passar os atributos dinamicamente dentro do escopo da classe, uma vez que o **kwargs é usado para
+#passar argumentos de forma dinamica para funções. então o uso do **kwargs dentro do escopo da classe não faz sentido.
+
+
