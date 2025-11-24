@@ -4,42 +4,54 @@ class RetornaLista():
         #ele inicializa o objeto pedindo a entrada dos dados.
         #  self.input = input("Digite 5 números quaisquer entre 0 - 99, separados por virgula")
         #podemos passar também um método que constroi o objeto e a partir dele ja checa se ele tem o tamanho correto.
-        self.orquestra_fluxo_e_retorna()
+        #self.orquestra_fluxo_e_retorna()
+        #troquei a classe orquestra_fluxo... pelo método executar, onde no caso só vai executar com uma chamada 
+        #de quem está executando o código e não automaticamente
         pass
 
-    def orquestra_fluxo_e_retorna(self):
-        self.inicializa_fluxo()
-        print("aqui passou")
-        self.retorno = [int(item) for item in self.lista_numeros ]
-        print(self.retorno)
+    def executar(self):
+        self._inicializa_fluxo()
         
-
-    def inicializa_fluxo(self):    
+    #defini os métodos internos que não são acessíveis fora da classe. 
+    def _inicializa_fluxo(self):    
         while True:
-            self.inicializa_objeto()
-            checagem_tamanho = self.checagem_tamanho(self.lista_numeros)
-            checagem_numeros = self.checagem_numeros(self.lista_numeros)
-            if checagem_tamanho and checagem_numeros:
-                break
+            if not self._inicializa_objeto():
+                continue
 
-    #recebe e valida
-    def inicializa_objeto(self):
+            if not self._checagem_tamanho(self.numeros):
+                continue
+
+            if not self._checagem_numeros(self.numeros):
+                continue
+
+            print(self.numeros)
+            break
+
+   
+    def _inicializa_objeto(self):
         self.input = input("Digite 5 números quaisquer entre 0 - 99, separados por virgula")
         self.lista_numeros = self.input.split(",")
-        return self.lista_numeros
+        try:
+            self.numeros = list(map(int,self.lista_numeros))
+        except ValueError:
+            print("os valores devem ser numeros inteiros")
+            return False
+
+        return self.numeros
         
     
-    def checagem_numeros(self,parametro):
+    def _checagem_numeros(self,parametro):
         for item in parametro:
-            if int(item) > 99 or int(item) < 0:
+            if item > 99 or item < 0:
                 print(f"o numero fora do range: {item}")
                 return False
         return True
 
-    def checagem_tamanho(self,parametro):
-        while len(parametro) != 5:
+    def _checagem_tamanho(self,parametro):
+        if len(parametro) != 5:
             print("quantidade de numeros diferente")
             return False
         return True
 
 teste = RetornaLista()
+teste.executar()
